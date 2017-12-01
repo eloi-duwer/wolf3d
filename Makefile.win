@@ -1,0 +1,28 @@
+NAME = wolf3d
+
+CC = mingw32-gcc.exe
+
+CFLAGS = -I./SDL2_32/include
+
+SRCS = main.c
+
+SRCF = ./srcs/
+
+OBJS = $(addprefix $(SRCF), $(SRCS:.c=.o))
+
+LIB = ./SDL2_32/lib
+
+Release: all
+Debug: all
+
+clean:
+	rm -rf $(OBJS)
+
+
+fclean: clean
+
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) -o ./bin/$(NAME) $(OBJS) -L$(LIB) -lmingw32 -lSDL2main -lSDL2
