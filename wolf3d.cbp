@@ -3,6 +3,7 @@
 	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="wolf3d" />
+		<Option makefile="Makefile.win" />
 		<Option makefile_is_custom="1" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
@@ -56,7 +57,11 @@
 			<Add library="D:/programms/MinGW/lib/libSDL2.a" />
 			<Add directory="D:/programms/MinGW/include/SDL2" />
 		</Linker>
-		<Unit filename="Makefile" />
+		<Unit filename="Makefile.win" />
+		<Unit filename="include/wolf3d.h" />
+		<Unit filename="srcs/graphiclib.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="srcs/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
