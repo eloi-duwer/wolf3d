@@ -2,9 +2,11 @@ NAME = wolf3d
 
 CC = gcc
 
-CFLAGS = -I./SDL2_mac/include
+CFLAGS = -I./SDL2_mac/include -I./include
 
-SRCS = main.c
+SRCS = main.c \
+		graphiclib.c \
+		parse.c
 
 SRCF = ./srcs/
 
@@ -22,4 +24,4 @@ fclean: clean
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) -o ./bin/$(NAME) $(OBJS) -L$(LIB) -lSDL2
+	$(CC) -o ./bin/$(NAME) $(OBJS) -L$(LIB) -lSDL2 -lm

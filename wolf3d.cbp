@@ -57,12 +57,207 @@
 			<Add library="D:/programms/MinGW/lib/libSDL2.a" />
 			<Add directory="D:/programms/MinGW/include/SDL2" />
 		</Linker>
+		<Unit filename="Makefile" />
 		<Unit filename="Makefile.win" />
 		<Unit filename="include/wolf3d.h" />
+		<Unit filename="libft/Makefile" />
+		<Unit filename="libft/Makefile.win" />
+		<Unit filename="libft/ft_abs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_atoi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_bzero.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_isalnum.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_isalpha.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_isascii.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_isdigit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_isprint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_itoa.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_lstadd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_lstdel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_lstdelone.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_lstiter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_lstmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_lstnew.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_memalloc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_memccpy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_memchr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_memcmp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_memcpy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_memdel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_memmove.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_memset.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_power.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_putchar.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_putchar_fd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_putendl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_putendl_fd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_putnbr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_putnbr_fd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_putstr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_putstr_fd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strcat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strchr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strclr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strcmp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strcpy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strdel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strdup.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strequ.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_striter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_striteri.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strjoin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strlcat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strlen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strmapi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strncat.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strncmp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strncpy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strnequ.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strnew.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strnstr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strrchr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strsplit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strstr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strsub.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_strtrim.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_tolower.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/ft_toupper.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/get_next_line.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libft/get_next_line.h" />
+		<Unit filename="libft/libft.h" />
+		<Unit filename="libft/mlx_img_pixel_put.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="map/test1.map" />
 		<Unit filename="srcs/graphiclib.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="srcs/main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="srcs/parse.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>

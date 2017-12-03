@@ -2,27 +2,29 @@ NAME = wolf3d
 
 CC = mingw32-gcc.exe
 
-CFLAGS = -I./SDL2_win/include
+CFLAGS = -I./SDL2_win/include -I./include -I./libft
 
-SRCS = main.c
+SRCS = main.c \
+		graphiclib.c \
+		parse.c
 
 SRCF = ./srcs/
 
 OBJS = $(addprefix $(SRCF), $(SRCS:.c=.o))
 
-LIB = ./SDL2_winnn/lib
+LIB = ./SDL2_win/lib
 
 Release: all
 Debug: all
 
 clean:
-	rm -rf $(OBJS)
-
+	$(shell rm -rf $(OBJS))
 
 fclean: clean
-
+	$(shell rm -rf ./bin/wolf3d)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) -o ./bin/$(NAME) $(OBJS) -L$(LIB) -lmingw32 -lSDL2main -lSDL2
+	cd ./libft && mingw32-make.exe -f Makefile.win
+	$(CC) -o ./bin/$(NAME) $(OBJS) -L$(LIB) -lmingw32 -lSDL2main -lSDL2  -lm -L./libft -lft
