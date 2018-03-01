@@ -7,11 +7,11 @@ CFLAGS = -I./SDL2/include -I./include
 SRCS = main.c \
 		graphiclib.c \
 		parse.c \
-		drawMap.c \
-		gameMechanics.c \
+		draw_map.c \
+		game_mechanics.c \
 		get_t_x_y.c \
-		handleKeyboard.c \
-		mainRender.c \
+		handle_keyboard.c \
+		main_render.c \
 		math.c \
 		utils.c
 
