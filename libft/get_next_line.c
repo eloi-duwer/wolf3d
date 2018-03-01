@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 14:49:01 by eduwer            #+#    #+#             */
-/*   Updated: 2016/11/26 16:08:26 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/01 12:59:17 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int				get_next_line(const int fd, char **line)
 	i = 0;
 	while (1)
 	{
-		ret = _read(fd, stat_buff, BUFF_SIZE);
+		ret = read(fd, stat_buff, BUFF_SIZE);
 		if (ft_check(ret, line) != 2)
 			return (ft_check(ret, line));
 		if ((i = ft_empty_the_buffer(line, stat_buff, ft_strlen(*line))) != 0)

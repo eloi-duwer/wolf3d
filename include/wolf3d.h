@@ -1,5 +1,6 @@
 #ifndef WOLF3D_H
 # define WOLF3D_H
+# include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <SDL2/SDL.h>
@@ -68,7 +69,7 @@ double			get_t_x(t_infos *infos, double *vector, double *res);
 double			get_t_y(t_infos *infos, double *vector, double *res);
 double			get_t_x_and_y(t_infos *infos, double *vector, int *res);
 void			setMinimapTopLeft(t_infos *infos);
-
-void	draw_vec(t_infos *infos, double *vec, Uint32 color);
+void			draw_vec(t_infos *infos, double *vec, Uint32 color);
+void			convert_map_pos_to_minimap_pos(t_infos *infos, double *pos, int *res);
 
 #endif
