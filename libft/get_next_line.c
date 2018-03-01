@@ -73,8 +73,6 @@ int				ft_check(int ret, char **line)
 	return (2);
 }
 
-#include <stdio.h>
-
 int				get_next_line(const int fd, char **line)
 {
 	static char stat_buff[BUFF_SIZE] = {'\0'};
@@ -94,8 +92,7 @@ int				get_next_line(const int fd, char **line)
 	i = 0;
 	while (1)
 	{
-		ret = read(fd, stat_buff, BUFF_SIZE);
-		printf("retour du read: %s\n", stat_buff);
+		ret = _read(fd, stat_buff, BUFF_SIZE);
 		if (ft_check(ret, line) != 2)
 			return (ft_check(ret, line));
 		if ((i = ft_empty_the_buffer(line, stat_buff, ft_strlen(*line))) != 0)

@@ -251,13 +251,36 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="map/test1.map" />
+		<Unit filename="srcs/drawMap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="srcs/gameMechanics.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="srcs/get_t_x_y.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="srcs/graphiclib.c">
 			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="srcs/handleKeyboard.c">
+			<Option compilerVar="CPP" />
+			<Option compile="0" />
+			<Option link="0" />
 		</Unit>
 		<Unit filename="srcs/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="srcs/mainRender.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="srcs/math.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="srcs/parse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="srcs/utils.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>

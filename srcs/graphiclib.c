@@ -1,6 +1,22 @@
 #include <wolf3d.h>
 
-void setPixel(SDL_Surface *surface, int x, int y, Uint32 pixelColor)
+void	setPixel3bpp(Uint8 *p, Uint32 pixelColor)
+{
+	if(SDL_BYTEORDER == SDL_BIG_ENDIAN)
+	{
+		p[0] = (pixelColor >> 16) & 0xff;
+		p[1] = (pixelColor >> 8) & 0xff;
+		p[2] = pixelColor & 0xff;
+	}
+	else
+	{
+		p[0] = pixelColor & 0xff;
+		p[1] = (pixelColor >> 8) & 0xff;
+		p[2] = (pixelColor >> 16) & 0xff;
+	}
+}
+
+void	setPixel(SDL_Surface *surface, int x, int y, Uint32 pixelColor)
 {
     int 	bpp = surface->format->BytesPerPixel;
     Uint8	*p = (Uint8 *)surface->pixels + y * surface->pitch + x * bpp;
@@ -16,18 +32,7 @@ void setPixel(SDL_Surface *surface, int x, int y, Uint32 pixelColor)
 			break;
 
 		case 3:
-			if(SDL_BYTEORDER == SDL_BIG_ENDIAN)
-			{
-				p[0] = (pixelColor >> 16) & 0xff;
-				p[1] = (pixelColor >> 8) & 0xff;
-				p[2] = pixelColor & 0xff;
-			}
-			else
-			{
-				p[0] = pixelColor & 0xff;
-				p[1] = (pixelColor >> 8) & 0xff;
-				p[2] = (pixelColor >> 16) & 0xff;
-			}
+			setPixel3bpp(p, pixelColor);
 			break;
 
 		case 4:
@@ -36,7 +41,8 @@ void setPixel(SDL_Surface *surface, int x, int y, Uint32 pixelColor)
     }
 }
 
-void		redraw_the_line(t_infos *infos, int pt1[2], int pt2[2])
+void	redraw_the_line(SDL_Surface *surface, int pt1[2], int pt2[2],\
+			Uint32 color)
 {
 	double 	x;
 	double 	y;
@@ -53,13 +59,14 @@ void		redraw_the_line(t_infos *infos, int pt1[2], int pt2[2])
 		while (y <= y_max)
 		{
 			x = nearbyint(a * y + b);
-			setPixel(infos->surface, (int)x, (int)y, infos->color_to_put);
+			setPixel(surface, (int)x, (int)y, color);
 			y++;
 		}
 	}
 }
 
-void		draw_a_line(t_infos *infos, int cor1[2], int cor2[2])
+void	draw_a_line(SDL_Surface *surface, int cor1[2], int cor2[2],\
+			Uint32 color)
 {
 	double	x;
 	double	y;
@@ -76,10 +83,9 @@ void		draw_a_line(t_infos *infos, int cor1[2], int cor2[2])
 		while (x <= x_max)
 		{
 			y = nearbyint(a * x + b);
-			setPixel(infos->surface, (int)x, (int)y, infos->color_to_put);
+			setPixel(surface, (int)x, (int)y, color);
 			x++;
 		}
 	}
-	redraw_the_line(infos, cor1, cor2);
+	redraw_the_line(surface, cor1, cor2, color);
 }
-

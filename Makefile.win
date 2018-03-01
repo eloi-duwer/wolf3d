@@ -2,11 +2,18 @@ NAME = wolf3d
 
 CC = mingw32-gcc.exe
 
-CFLAGS = -I./SDL2_win/include -I./include -I./libft
+CFLAGS = -I./SDL2_win/include -I./include -I./libft -Wall -Wextra
 
 SRCS = main.c \
 		graphiclib.c \
-		parse.c
+		parse.c \
+		drawMap.c \
+		utils.c \
+		handleKeyboard.c \
+		gameMechanics.c \
+		math.c \
+		get_t_x_y.c \
+		mainRender.c
 
 SRCF = ./srcs/
 
@@ -18,10 +25,10 @@ Release: all
 Debug: all
 
 clean:
-	$(shell rm -rf $(OBJS))
+	D:\Msys64\usr\bin\rm.exe $(OBJS)
 
 fclean: clean
-	$(shell rm -rf ./bin/wolf3d)
+	D:\Msys64\usr\bin\rm.exe $(NAME)
 
 all: $(NAME)
 
