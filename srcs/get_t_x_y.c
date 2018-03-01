@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 18:20:48 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/01 18:24:57 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/01 20:45:01 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,9 @@ double	get_t_x(t_infos *infos, double *tmp_vector, double *res)
 	if (nearest_x < 0 || y < 0 || \
 		nearest_x >= infos->map_size[0] || y >= infos->map_size[1])
 		return (666.66);
-	res[0] = actual_y;
-	res[1] = nearest_x;
-	return (sqrt(pow(res[0] - infos->player_pos[0], 2) + pow(res[1] - \
-		infos->player_pos[1], 2)));
+	res[0] = actual_y - infos->player_pos[0];
+	res[1] = nearest_x - infos->player_pos[1];
+	return (sqrt(pow(res[0], 2) + pow(res[1], 2)));
 }
 
 double	get_t_y(t_infos *infos, double *tmp_vector, double *res)
@@ -78,7 +77,7 @@ double	get_t_y(t_infos *infos, double *tmp_vector, double *res)
 	int		x;
 	double	vector[2];
 
-	if (vector[0] == 0.0)
+	if (tmp_vector[0] == 0.0)
 		return (666.66);
 	set_vector(tmp_vector, vector, false);
 	nearest_y = (vector[0] > 0 ? (int)ceil(infos->player_pos[0])\
@@ -86,21 +85,22 @@ double	get_t_y(t_infos *infos, double *tmp_vector, double *res)
 	actual_x = infos->player_pos[1] + vector[1] * ((double)nearest_y - \
 		infos->player_pos[0]) / vector[0];
 	x = (int)floor(actual_x);
+	printf("Vec: %.2f, %.2f\n", vector[0], vector[1]);
 	while (test_x_y(x, (vector[0] < 0 ? nearest_y - 1 : nearest_y), \
 		infos->map_size, infos->world_map) == 1)
 	{
 		nearest_y += (int)vector[1];
 		actual_x += vector[0];
+		printf("Pas trouve: %.2f, %.2f\n", actual_x, (double)nearest_y);
 		if ((int)floor(actual_x) != x)
 			x = floor(actual_x);
 	}
 	if (x < 0 || nearest_y < 0 || x >= infos->map_size[0] \
 		|| nearest_y >= infos->map_size[1])
 		return (666.66);
-	res[0] = nearest_y;
-	res[1] = actual_x;
-	return (sqrt(pow(res[0] - infos->player_pos[0], 2) + pow(res[1] - \
-		infos->player_pos[1], 2)));
+	res[0] = nearest_y - infos->player_pos[0];
+	res[1] = actual_x - infos->player_pos[1];
+	return (sqrt(pow(res[0], 2) + pow(res[1], 2)));
 }
 
 double	get_t_x_and_y(t_infos *infos, double *vector, int *res)
@@ -110,7 +110,8 @@ double	get_t_x_and_y(t_infos *infos, double *vector, int *res)
 	double	t1;
 	double	t2;
 
-	t1 = get_t_x(infos, vector, res1);
+	res = NULL; /* Pour la compilation */
+	t1 = /*get_t_x(infos, vector, res1);*/ 999;
 	t2 = get_t_y(infos, vector, res2);
 	if (t1 < t2)
 	{

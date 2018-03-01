@@ -2,7 +2,7 @@ NAME = wolf3d
 
 CC = gcc
 
-CFLAGS = -I./SDL2/include -I./include
+CFLAGS = -I./SDL2/include -I./include -Wall -Wextra -Werror
 
 SRCS = main.c \
 		graphiclib.c \

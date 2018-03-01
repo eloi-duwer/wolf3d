@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 16:48:46 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/01 16:53:21 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/01 18:55:17 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	handlekeyboardup(t_infos *infos)
 	if (key == SDLK_ESCAPE)
 		quit_prog(infos);
 	else if (key == SDLK_DOWN)
-		infos->keypressed[DOWN] = 1;
+		infos->keypressed[DOWN] = 0;
 	else if (key == SDLK_UP)
-		infos->keypressed[UP] = 1;
+		infos->keypressed[UP] = 0;
 	else if (key == SDLK_RIGHT)
-		infos->keypressed[RIGHT] = 1;
+		infos->keypressed[RIGHT] = 0;
 	else if (key == SDLK_LEFT)
-		infos->keypressed[LEFT] = 1;
+		infos->keypressed[LEFT] = 0;
 }

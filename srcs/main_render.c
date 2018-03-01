@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 16:57:34 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/01 18:27:41 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/01 20:27:53 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	set_color(t_infos *infos, double *vector, double t)
 	double	mult;
 	Uint8	color;
 
+	vector = NULL; /* Compilation */
 	mult = 1 / sqrt(t + 1);
 	color = (int)(255. * mult);
 	infos->color_to_put = SDL_MapRGB(infos->surface->format, color, \
@@ -72,8 +73,8 @@ void	mainrender(t_infos *infos)
 	double	normalized_view_vector[2];
 	double	i;
 
-	SDL_FillRect(infos->surface, NULL, SDL_MapRGB(infos->surface->format,\
-		(Uint8)0, (Uint8)0, (Uint8)0));
+	ft_memset(infos->surface->pixels, 0, infos->surface->pitch \
+		* infos->surface->h);
 	screen_mid_pos[0] = infos->player_pos[0] + infos->view_vector[0];
 	screen_mid_pos[1] = infos->player_pos[1] + infos->view_vector[1];
 	infos->screenleftpos[0] = screen_mid_pos[0] + -infos->view_vector[1];
@@ -93,8 +94,8 @@ void	mainrender(t_infos *infos)
 		{
 			draw_vec(infos, normalized_view_vector, \
 				SDL_MapRGB(infos->surface->format, \
-				(Uint8)255, (Uint8)255, (Uint8)255));
-		}
-		calcintersecanddraw(infos, normalized_view_vector, (int)i);
+				(Uint8)255, (Uint8)0, (Uint8)255));
+		//}
+		calcintersecanddraw(infos, normalized_view_vector, (int)i);}
 	}
 }
