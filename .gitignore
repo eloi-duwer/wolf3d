@@ -7,3 +7,4 @@ wolf3d.layout
 obj
 srcs/*.o
 libft/*.o
+libft/*.a

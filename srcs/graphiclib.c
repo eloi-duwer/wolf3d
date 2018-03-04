@@ -33,19 +33,22 @@ void	setpixel(SDL_Surface *surface, int x, int y, Uint32 pixelcolor)
 	int		bytes_per_pixel;
 	Uint8	*p;
 
-	bytes_per_pixel = surface->format->BytesPerPixel;
-	p = (Uint8 *)surface->pixels + y * surface->pitch + x * bytes_per_pixel;
-	if (bytes_per_pixel == 1)
-		*p = pixelcolor;
-	else if (bytes_per_pixel == 2)
-		*(Uint16 *)p = pixelcolor;
-	else if (bytes_per_pixel == 3)
-		setpixel3bpp(p, pixelcolor);
-	else if (bytes_per_pixel == 4)
-		*(Uint32 *)p = pixelcolor;
+	if (x >= 0 && x < surface->w && y >= 0 && y < surface->h)
+	{
+		bytes_per_pixel = surface->format->BytesPerPixel;
+		p = (Uint8 *)surface->pixels + y * surface->pitch + x * bytes_per_pixel;
+		if (bytes_per_pixel == 1)
+			*p = pixelcolor;
+		else if (bytes_per_pixel == 2)
+			*(Uint16 *)p = pixelcolor;
+		else if (bytes_per_pixel == 3)
+			setpixel3bpp(p, pixelcolor);
+		else if (bytes_per_pixel == 4)
+			*(Uint32 *)p = pixelcolor;
+	}
 }
 
-void	redraw_the_line(SDL_Surface *surface, int pt1[2], int pt2[2],\
+void	redraw_the_line(SDL_Surface *surface, t_int_point pt1, t_int_point pt2,\
 			Uint32 color)
 {
 	double	x;
@@ -54,12 +57,12 @@ void	redraw_the_line(SDL_Surface *surface, int pt1[2], int pt2[2],\
 	double	b;
 	double	y_max;
 
-	y = nearbyint(fmin((double)(pt1[1]), (double)(pt2[1])));
-	y_max = nearbyint(fmax((double)(pt1[1]), (double)(pt2[1])));
-	if (pt1[1] != pt2[1])
+	y = nearbyint(fmin((double)(pt1.y), (double)(pt2.y)));
+	y_max = nearbyint(fmax((double)(pt1.y), (double)(pt2.y)));
+	if (pt1.y != pt2.y)
 	{
-		a = ((double)(pt2[0] - pt1[0]) / (double)(pt2[1] - pt1[1]));
-		b = (double)(pt1[0]) - ((double)(pt1[1]) * a);
+		a = ((double)(pt2.x - pt1.x) / (double)(pt2.y - pt1.y));
+		b = (double)(pt1.x) - ((double)(pt1.y) * a);
 		while (y <= y_max)
 		{
 			x = nearbyint(a * y + b);
@@ -69,7 +72,7 @@ void	redraw_the_line(SDL_Surface *surface, int pt1[2], int pt2[2],\
 	}
 }
 
-void	draw_a_line(SDL_Surface *surface, int cor1[2], int cor2[2],\
+void	draw_a_line(SDL_Surface *surface, t_int_point cor1, t_int_point cor2,\
 			Uint32 color)
 {
 	double	x;
@@ -78,12 +81,12 @@ void	draw_a_line(SDL_Surface *surface, int cor1[2], int cor2[2],\
 	double	b;
 	int		x_max;
 
-	x = nearbyint(fmin((double)(cor1[0]), (double)(cor2[0])));
-	x_max = nearbyint(fmax((double)(cor1[0]), (double)(cor2[0])));
-	if (cor1[0] != cor2[0])
+	x = nearbyint(fmin((double)(cor1.x), (double)(cor2.x)));
+	x_max = nearbyint(fmax((double)(cor1.x), (double)(cor2.x)));
+	if (cor1.x != cor2.x)
 	{
-		a = ((double)(cor2[1] - cor1[1]) / (double)(cor2[0] - cor1[0]));
-		b = (double)(cor1[1]) - ((double)cor1[0] * a);
+		a = ((double)(cor2.y - cor1.y) / (double)(cor2.x - cor1.x));
+		b = (double)(cor1.y) - ((double)cor1.x * a);
 		while (x <= x_max)
 		{
 			y = nearbyint(a * x + b);

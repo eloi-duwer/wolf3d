@@ -25,7 +25,7 @@ void	test_event(t_infos *infos)
 		quit_prog(infos);
 	else if (event_type == SDL_MOUSEMOTION)
 	{
-		rotateviewvector(infos->view_vector,\
+		rotateviewvector(&(infos->view_vector),\
 				(double)(infos->event.motion.xrel) * 0.01);
 	}
 }
@@ -33,11 +33,10 @@ void	test_event(t_infos *infos)
 void	main_loop(t_infos *infos)
 {
 	Uint32	tick;
-	int		time_to_wait;
 
 	while (true)
 	{
-		infos->lattick = SDL_GetTicks();
+		infos->lasttick = SDL_GetTicks();
 		while (SDL_PollEvent(&(infos->event)))
 			test_event(infos);
 		moveplayer(infos);
@@ -45,10 +44,8 @@ void	main_loop(t_infos *infos)
 		drawminimap(infos);
 		SDL_UpdateWindowSurface(infos->window);
 		tick = SDL_GetTicks();
-		time_to_wait = (int)(1000 / 60) - (tick - infos->lattick);
-		infos->lattick = tick;
-		if (time_to_wait > 0)
-			SDL_Delay((Uint32)time_to_wait);
+		infos->elapsedtime = tick - infos->lasttick;
+		infos->lasttick = tick;
 	}
 }
 

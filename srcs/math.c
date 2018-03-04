@@ -12,20 +12,20 @@
 
 #include <wolf3d.h>
 
-void	rotateviewvector(double *viewvector, double angle)
+void	rotateviewvector(t_dbl_point *viewvector, double angle)
 {
 	double temp;
 
-	temp = viewvector[1];
-	viewvector[1] = viewvector[1] * cos(angle) - viewvector[0] * sin(angle);
-	viewvector[0] = temp * sin(angle) + viewvector[0] * cos(angle);
+	temp = viewvector->x;
+	viewvector->x = viewvector->x * cos(angle) - viewvector->y * sin(angle);
+	viewvector->y = temp * sin(angle) + viewvector->y * cos(angle);
 }
 
-void	normlizevector(double *vector, double *res)
+void	normlizevector(t_dbl_point vector, t_dbl_point *res)
 {
 	double length;
 
-	length = sqrt(vector[0] * vector[0] + vector[1] * vector[1]);
-	res[0] = vector[0] / length;
-	res[1] = vector[1] / length;
+	length = sqrt(vector.x * vector.x + vector.y * vector.y);
+	res->x = vector.x / length;
+	res->y = vector.y / length;
 }

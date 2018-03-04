@@ -32,8 +32,8 @@ void	init_struct(t_infos *infos, int carg, char **argnames)
 	infos->window = SDL_CreateWindow("wolf3d", SDL_WINDOWPOS_CENTERED,\
 					SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_SHOWN);
 	infos->surface = SDL_GetWindowSurface(infos->window);
-	infos->miniapsizepixels[0] = 300;
-	infos->miniapsizepixels[1] = 300;
+	infos->miniapsizepixels.x = 300;
+	infos->miniapsizepixels.y = 300;
 	SDL_SetRelativeMouseMode(true);
 	infos->color_to_put = SDL_MapRGB(infos->surface->format,\
 		255, 255, 255);
@@ -42,6 +42,6 @@ void	init_struct(t_infos *infos, int carg, char **argnames)
 	infos->keypressed[DOWN] = 0;
 	infos->keypressed[LEFT] = 0;
 	infos->keypressed[RIGHT] = 0;
-	infos->view_vector[0] = -1.0;
-	infos->view_vector[1] = 0.0;
+	infos->view_vector.y = -1.0;
+	infos->view_vector.x = 0.0;
 }
