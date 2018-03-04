@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   math.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/01 17:10:24 by eduwer            #+#    #+#             */
+/*   Updated: 2018/03/01 17:10:26 by eduwer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <wolf3d.h>
 
-void	rotateViewVector(double *viewVector, double angle)
+void	rotateviewvector(double *viewvector, double angle)
 {
 	double temp;
 
-	temp = viewVector[1];
-	viewVector[1] = viewVector[1] * cos(angle) - viewVector[0] * sin(angle);
-	viewVector[0] = temp * sin(angle) + viewVector[0] * cos(angle);
+	temp = viewvector[1];
+	viewvector[1] = viewvector[1] * cos(angle) - viewvector[0] * sin(angle);
+	viewvector[0] = temp * sin(angle) + viewvector[0] * cos(angle);
 }
 
-void	normalizeVector(double *vector, double *res)
+void	normlizevector(double *vector, double *res)
 {
 	double length;
 

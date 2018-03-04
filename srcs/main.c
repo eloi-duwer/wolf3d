@@ -1,22 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/01 16:53:45 by eduwer            #+#    #+#             */
+/*   Updated: 2018/03/01 16:57:12 by eduwer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <wolf3d.h>
 
-void 	test_event(t_infos *infos)
+void	test_event(t_infos *infos)
 {
-	switch((infos->event).type)
+	int event_type;
+
+	event_type = (infos->event).type;
+	if (event_type == SDL_KEYDOWN)
+		handlekeyboarddown(infos);
+	else if (event_type == SDL_KEYUP)
+		handlekeyboardup(infos);
+	else if (event_type == SDL_QUIT)
+		quit_prog(infos);
+	else if (event_type == SDL_MOUSEMOTION)
 	{
-		case SDL_KEYDOWN:
-			handleKeyboardDown(infos);
-			break;
-		case SDL_KEYUP:
-			handleKeyboardUp(infos);
-			break;
-		case SDL_QUIT:
-			quit_prog(infos);
-		case SDL_MOUSEMOTION:
-			rotateViewVector(infos->view_vector,\
+		rotateviewvector(infos->view_vector,\
 				(double)(infos->event.motion.xrel) * 0.01);
-			break;
-    }
+	}
 }
 
 void	main_loop(t_infos *infos)
@@ -26,27 +37,27 @@ void	main_loop(t_infos *infos)
 
 	while (true)
 	{
-		infos->lastTick = SDL_GetTicks();
+		infos->lattick = SDL_GetTicks();
 		while (SDL_PollEvent(&(infos->event)))
 			test_event(infos);
-		movePlayer(infos);
-		mainRender(infos);
-		drawMiniMap(infos);
+		moveplayer(infos);
+		mainrender(infos);
+		drawminimap(infos);
 		SDL_UpdateWindowSurface(infos->window);
 		tick = SDL_GetTicks();
-		time_to_wait = (int)(1000 / 60) - (tick - infos->lastTick);
-		infos->lastTick = tick;
+		time_to_wait = (int)(1000 / 60) - (tick - infos->lattick);
+		infos->lattick = tick;
 		if (time_to_wait > 0)
 			SDL_Delay((Uint32)time_to_wait);
 	}
 }
 
-int 	main(int argc, char** argv)
+int		main(int argc, char **argv)
 {
 	t_infos infos;
 
 	init_struct(&infos, argc, argv);
-	parseFile(&infos, infos.fileName);
+	parsefile(&infos, infos.file_name);
 	main_loop(&infos);
-    return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }

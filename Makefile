@@ -2,26 +2,36 @@ NAME = wolf3d
 
 CC = gcc
 
-CFLAGS = -I./SDL2_mac/include -I./include
+CFLAGS = -I./SDL2/include -I./include -Wall -Wextra -Werror
 
 SRCS = main.c \
 		graphiclib.c \
-		parse.c
+		parse.c \
+		draw_map.c \
+		game_mechanics.c \
+		get_t_x_y.c \
+		handle_keyboard.c \
+		main_render.c \
+		math.c \
+		utils.c
 
 SRCF = ./srcs/
 
-OBJS = $(addprefix $(SRCF), $(SRCS:.c=.o))
+all: $(NAME)
 
-LIB = ./SDL2_mac/lib
+OBJS = $(addprefix $(SRCF), $(SRCS:.c=.o))
 
 clean:
 	rm -rf $(OBJS)
 
-
 fclean: clean
-
-
-all: $(NAME)
+	rm -rf $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) -o ./bin/$(NAME) $(OBJS) -L$(LIB) -lSDL2 -lm
+	@cd libft && make
+	$(CC) -o $(NAME) $(OBJS) -lm -L./libft -lft `./SDL2-2.0.7/build/sdl2-config --cflags --libs`
+
+re: fclean all
+
+SDL2:
+	cd SDL2-2.0.7 && mkdir build && cd build && ../configure --prefix ~/Library && make && make install
