@@ -4,6 +4,7 @@ Makefile.win
 wolf3d.cbp
 wolf3d.depend
 wolf3d.layout
+wolf3d
 obj
 srcs/*.o
 libft/*.o

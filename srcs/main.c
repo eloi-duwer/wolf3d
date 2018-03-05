@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 16:53:45 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/01 16:57:12 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/05 12:39:10 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,24 @@ void	main_loop(t_infos *infos)
 	}
 }
 
+void	load_images(t_infos *infos)
+{
+	infos->walls[0] = SDL_LoadBMP("./img/stone_wall.bmp");
+	infos->walls[1] = SDL_LoadBMP("./img/wooden_wall.bmp");
+	infos->walls[2] = SDL_LoadBMP("./img/bricks_wall.bmp");
+	infos->walls[3] = SDL_LoadBMP("./img/cinder_wall.bmp");
+	if (infos->walls[0] == NULL || infos->walls[1] == NULL || \
+		infos->walls[2] == NULL || infos->walls[3] == NULL)
+		printerror(infos, "Une des quatre textures est invalide");
+}
+
 int		main(int argc, char **argv)
 {
 	t_infos infos;
 
 	init_struct(&infos, argc, argv);
 	parsefile(&infos, infos.file_name);
+	load_images(&infos);
 	main_loop(&infos);
 	return (EXIT_SUCCESS);
 }

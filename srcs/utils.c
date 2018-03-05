@@ -6,11 +6,20 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 17:14:08 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/01 18:26:29 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/05 12:49:50 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <wolf3d.h>
+
+int		test_x_y(int x, int y, t_int_point mapsize, int **map)
+{
+	if (x < 0 || y < 0 || x >= mapsize.x || y >= mapsize.y)
+		return (-1);
+	if (map[x][y] == 0)
+		return (1);
+	return (0);
+}
 
 void	quit_prog(t_infos *infos)
 {
@@ -44,4 +53,5 @@ void	init_struct(t_infos *infos, int carg, char **argnames)
 	infos->keypressed[RIGHT] = 0;
 	infos->view_vector.y = -1.0;
 	infos->view_vector.x = 0.0;
+	infos->print_walls = true;
 }

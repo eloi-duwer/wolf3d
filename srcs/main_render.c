@@ -6,46 +6,35 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 16:57:34 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/01 20:27:53 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/05 14:04:40 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <wolf3d.h>
 
-void	draw_wall(t_infos *infos, int i, double height)
-{
-	t_int_point	begin_point;
-	t_int_point	end_point;
-
-	begin_point.x = i;
-	end_point.x = i;
-	begin_point.y = (int)fmax((((double)infos->surface->h - height) / 2), 0);
-	end_point.y = (int)fmin((((double)infos->surface->h + height) / 2), \
-		infos->surface->h - 1);
-	draw_a_line(infos->surface, begin_point, end_point, infos->color_to_put);
-}
-
-void	set_color(t_infos *infos, t_dbl_point vector, double t)
-{
-	double	mult;
-	Uint8	color;
-
-	mult = 1 / sqrt(t + 1);
-	color = (int)(255. * mult);
-	infos->color_to_put = SDL_MapRGB(infos->surface->format, color, \
-		color, color);
-}
-
 void	calcintersecanddraw(t_infos *infos, t_dbl_point vector, int i)
 {
 	double		t;
-	t_int_point	final_coords;
+	t_dbl_point	final_coords;
 	double		height;
+	t_int_point	begin_point;
+	t_int_point	end_point;
 
 	t = get_t_x_and_y(infos, vector, &final_coords);
-	height = fmin(infos->surface->h, infos->surface->h / (t + 1));
-	set_color(infos, vector, t);
-	draw_wall(infos, i, height);
+	t = t * cos(infos->angle);
+	//height = fmin(infos->surface->h, infos->surface->h / (t));
+	height = infos->surface->h / t;
+	begin_point.x = i;
+	end_point.x = i;
+	//begin_point.y = (int)fmax((((double)infos->surface->h - height) / 2), 0);
+	//end_point.y = (int)fmin((((double)infos->surface->h + height) / 2), \
+	//	infos->surface->h - 1);
+	begin_point.y = (infos->surface->h - height) / 2;
+	end_point.y = (infos->surface->h + height) / 2;
+	if (infos->print_walls == false)
+		draw_procedural_color(infos, t, begin_point, end_point);
+	else
+		print_texture_line(infos, final_coords, begin_point, end_point);
 }
 
 void	draw_vec(t_infos *infos, t_dbl_point vec, Uint32 color)
@@ -65,23 +54,29 @@ void	draw_vec(t_infos *infos, t_dbl_point vec, Uint32 color)
 		draw_a_line(infos->surface, res1, res2, color);
 }
 
+void	init_values(t_infos *infos, t_dbl_point *screen_mid_pos)
+{
+	ft_memset(infos->surface->pixels, 0, infos->surface->pitch \
+		* infos->surface->h);
+	screen_mid_pos->x = infos->player_pos.x + infos->view_vector.x;
+	screen_mid_pos->y = infos->player_pos.y + infos->view_vector.y;
+	infos->screenleftpos.x = screen_mid_pos->x + infos->view_vector.y;
+	infos->screenleftpos.y = screen_mid_pos->y + -infos->view_vector.x;
+	infos->pixelvector.x = ((screen_mid_pos->x - infos->screenleftpos.x) /\
+		((double)infos->surface->w)) * 2;
+	infos->pixelvector.y = ((screen_mid_pos->y - infos->screenleftpos.y) /\
+		((double)infos->surface->w)) * 2;
+}
+
 void	mainrender(t_infos *infos)
 {
 	t_dbl_point	screen_mid_pos;
 	t_dbl_point	point;
 	t_dbl_point	normalized_view_vector;
-	double	i;
+	double		i;
 
-	ft_memset(infos->surface->pixels, 0, infos->surface->pitch \
-		* infos->surface->h);
-	screen_mid_pos.x = infos->player_pos.x + infos->view_vector.x;
-	screen_mid_pos.y = infos->player_pos.y + infos->view_vector.y;
-	infos->screenleftpos.x = screen_mid_pos.x + infos->view_vector.y;
-	infos->screenleftpos.y = screen_mid_pos.y + -infos->view_vector.x;
-	infos->pixelvector.x = ((screen_mid_pos.x - infos->screenleftpos.x) /\
-		((double)infos->surface->w)) * 2;
-	infos->pixelvector.y = ((screen_mid_pos.y - infos->screenleftpos.y) /\
-		((double)infos->surface->w)) * 2;
+	init_values(infos, &screen_mid_pos);
+	infos->angle = M_PI / 4;
 	i = -1;
 	while (++i < (double)(infos->surface->w))
 	{
@@ -89,12 +84,10 @@ void	mainrender(t_infos *infos)
 		point.y = infos->screenleftpos.y + (infos->pixelvector.y * i);
 		normalized_view_vector.x = point.x - infos->player_pos.x;
 		normalized_view_vector.y = point.y - infos->player_pos.y;
-		if (i == floor(infos->surface->w / 2))
-		{
-			draw_vec(infos, normalized_view_vector, \
-				SDL_MapRGB(infos->surface->format, \
-				(Uint8)255, (Uint8)0, (Uint8)255));
-		}
-		calcintersecanddraw(infos, normalized_view_vector, (int)i);//}
+		draw_vec(infos, normalized_view_vector, \
+			SDL_MapRGB(infos->surface->format, \
+			(Uint8)255, (Uint8)0, (Uint8)255));
+		calcintersecanddraw(infos, normalized_view_vector, (int)i);
+		infos->angle -= (M_PI / 2) / infos->surface->w;
 	}
 }

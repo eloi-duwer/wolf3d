@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 16:35:16 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/01 16:48:27 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/05 12:58:44 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,14 @@ void	draw_a_line(SDL_Surface *surface, t_int_point cor1, t_int_point cor2,\
 		}
 	}
 	redraw_the_line(surface, cor1, cor2, color);
+}
+
+Uint32	getpixel(SDL_Surface *surface, int x, int y)
+{
+	Uint8			*pixel;
+
+	pixel = (Uint8*)surface->pixels;
+	pixel += ((Uint32)y * (Uint32)surface->pitch) + \
+		((Uint32)x * surface->format->BytesPerPixel);
+	return (*((Uint32*)pixel));
 }

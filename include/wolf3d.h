@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 15:07:21 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/01 16:23:30 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/05 13:58:52 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <SDL2/SDL.h>
+# include <SDL.h>
 # include <stdbool.h>
 # include <math.h>
 # include <libft.h>
@@ -65,6 +65,10 @@ typedef struct	s_infos {
 	t_dbl_point	screenleftpos;
 	t_dbl_point	pixelvector;
 	t_intersec	intersection;
+	int			wall_color;
+	double		angle;
+	SDL_Surface	*walls[4];
+	bool		print_walls;
 }				t_infos;
 
 void			setpixel(SDL_Surface *surface, int x, int y, \
@@ -88,13 +92,17 @@ void			moveplayer(t_infos *infos);
 void			rotateviewvector(t_dbl_point *viewvector, double angle);
 void			mainrender(t_infos *infos);
 void			normlizevector(t_dbl_point vector, t_dbl_point *res);
-double			get_t_x(t_infos *infos, t_dbl_point vector, t_dbl_point *res);
-double			get_t_y(t_infos *infos, t_dbl_point vector, t_dbl_point *res);
 double			get_t_x_and_y(t_infos *infos, t_dbl_point vector, \
-					t_int_point *res);
+					t_dbl_point *res);
 void			setminimaptopleft(t_infos *infos);
 void			draw_vec(t_infos *infos, t_dbl_point vec, Uint32 color);
 void			convert_map_pos_to_minimap_pos(t_infos *infos, \
 					t_dbl_point pos, t_int_point *res);
+int				test_x_y(int x, int y, t_int_point mapsize, int **map);
+Uint32			getpixel(SDL_Surface *surface, int x, int y);
+void			draw_procedural_color(t_infos *infos, double t, \
+					t_int_point begin, t_int_point end);
+void			print_texture_line(t_infos *infos, t_dbl_point vector, \
+					t_int_point begin, t_int_point end);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 16:48:46 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/01 18:55:17 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/05 13:01:19 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,11 @@ void	handlekeyboardup(t_infos *infos)
 		infos->keypressed[RIGHT] = 0;
 	else if (key == SDLK_LEFT)
 		infos->keypressed[LEFT] = 0;
+	else if (key == SDLK_RETURN)
+	{
+		if (infos->print_walls == true)
+			infos->print_walls = false;
+		else
+			infos->print_walls = true;
+	}
 }

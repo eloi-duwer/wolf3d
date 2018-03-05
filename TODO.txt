@@ -1,0 +1,4 @@
+Liste des trucs a faire avant de rendre:
+-Gerer les erreurs (map avec un 0 sur un mur exterieur, taille negative, position de depart du joueur invalide)
+-Ameliorer le calul de la hauteur + reduction du fisheye
+-Changer les couleurs en fonction de l'orientation + distance.

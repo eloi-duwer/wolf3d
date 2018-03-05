@@ -2,7 +2,7 @@ NAME = wolf3d
 
 CC = gcc
 
-CFLAGS = -I./SDL2/include -I./include -Wall -Wextra -Werror
+CFLAGS = -I./SDL2-2.0.7/include -I./include -Wall -Wextra -g
 
 SRCS = main.c \
 		graphiclib.c \
@@ -13,7 +13,9 @@ SRCS = main.c \
 		handle_keyboard.c \
 		main_render.c \
 		math.c \
-		utils.c
+		utils.c \
+		procedural_colors.c \
+		print_texture.c
 
 SRCF = ./srcs/
 
