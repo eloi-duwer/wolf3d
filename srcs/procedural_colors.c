@@ -18,7 +18,7 @@ void	draw_procedural_color(t_infos *infos, double t, \
 	double		mult;
 	Uint8		col;
 
-	mult = 1 / sqrt(t + 1);
+	mult = 1 / sqrt(0.1 * t + 1);
 	col = (int)(255. * mult);
 	if (infos->wall_color == UP)
 		infos->color_to_put = SDL_MapRGB(infos->surface->format, 0, col, 0);
@@ -28,5 +28,19 @@ void	draw_procedural_color(t_infos *infos, double t, \
 		infos->color_to_put = SDL_MapRGB(infos->surface->format, col, 0, 0);
 	else
 		infos->color_to_put = SDL_MapRGB(infos->surface->format, col, col, 0);
-	draw_a_line(infos->surface, begin_point, end_point, infos->color_to_put);
+	draw_column(infos->surface, begin_point, end_point, infos->color_to_put);
+}
+
+void	procedural_floor_roof(t_infos *infos, \
+			t_int_point begin, t_int_point end)
+{
+	t_int_point point;
+
+	point.x = begin.x;
+	point.y = 0;
+	draw_column(infos->surface, point, begin, \
+		SDL_MapRGB(infos->surface->format, (Uint8)135, (Uint8)206, (Uint8)235));
+	point.y = infos->surface->h;
+	draw_column(infos->surface, end, point, \
+		SDL_MapRGB(infos->surface->format, (Uint8)60, (Uint8)36, (Uint8)27));
 }

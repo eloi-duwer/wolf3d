@@ -12,6 +12,32 @@
 
 #include <wolf3d.h>
 
+void	control_map(t_infos *infos, int **map, t_dbl_point player_pos)
+{
+	int i;
+	t_int_point pos;
+	t_infos mem = *infos;
+
+	pos.x = (int)floor(player_pos.x);
+	pos.y = (int)floor(player_pos.y);
+	if (pos.x < 0 || pos.y < 0 || pos.x >= infos->map_size.x || \
+			pos.y >= infos->map_size.y)
+		printerror(infos, "X or Y position of the player is out of bounds");
+	if (map[pos.x][pos.y] != 0)
+		printerror(infos, "Player begin position is in a wall");
+	i = 0;
+	while (i < infos->map_size.x || i < infos->map_size.y)
+	{
+		if (i < infos->map_size.x && (map[i][0] == 0 || \
+			map[i][infos->map_size.y - 1] == 0))
+			printerror(infos, "There is a hole in the outer wall");
+		if (i < infos->map_size.y && (map[0][i] == 0 || \
+			map[infos->map_size.x - 1][i] == 0))
+			printerror(infos, "There is a hole in the outer wall");
+		++i;
+	}
+}
+
 int		getsizeandpos(t_infos *infos, char *line)
 {
 	char	**values;
@@ -98,8 +124,6 @@ void	parsefile(t_infos *infos, char *file_name)
 	else if (nb != infos->map_size.y - 1)
 		printerror(infos,\
 			"Number of lines different than the number in the declaration");
-	if (infos->world_map[(int)floor(infos->player_pos.x)]\
-		[(int)floor(infos->player_pos.y)] == 1)
-		printerror(infos, "Player begin position is in a wall");
+	control_map(infos, infos->world_map, infos->player_pos);
 	close(fd);
 }

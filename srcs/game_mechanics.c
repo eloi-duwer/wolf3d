@@ -12,10 +12,10 @@
 
 #include <wolf3d.h>
 
-void	dothemove(t_dbl_point *pos, double vecx, double vecy)
+void	dothemove(t_dbl_point *pos, double vecx, double vecy, int elapsedtime)
 {
-	pos->x += vecx * 0.05;
-	pos->y += vecy * 0.05;
+	pos->x += vecx * 0.003 * elapsedtime;
+	pos->y += vecy * 0.003 * elapsedtime;
 }
 
 void	moveplayer(t_infos *infos)
@@ -25,13 +25,17 @@ void	moveplayer(t_infos *infos)
 	new_pos.x = infos->player_pos.x;
 	new_pos.y = infos->player_pos.y;
 	if (infos->keypressed[UP])
-		dothemove(&new_pos, infos->view_vector.x, infos->view_vector.y);
+		dothemove(&new_pos, infos->view_vector.x, infos->view_vector.y, \
+			infos->elapsedtime);
 	if (infos->keypressed[DOWN])
-		dothemove(&new_pos, -infos->view_vector.x, -infos->view_vector.y);
+		dothemove(&new_pos, -infos->view_vector.x, -infos->view_vector.y, \
+			infos->elapsedtime);
 	if (infos->keypressed[LEFT])
-		dothemove(&new_pos, infos->view_vector.y, -infos->view_vector.x);
+		dothemove(&new_pos, infos->view_vector.y, -infos->view_vector.x, \
+			infos->elapsedtime);
 	if (infos->keypressed[RIGHT])
-		dothemove(&new_pos, -infos->view_vector.y, infos->view_vector.x);
+		dothemove(&new_pos, -infos->view_vector.y, infos->view_vector.x, \
+			infos->elapsedtime);
 	if (new_pos.x + new_pos.y >= 0 && (int)new_pos.x + (int)new_pos.y <= \
 		infos->map_size.x + infos->map_size.y - 1 &&
 		infos->world_map[(int)floor(new_pos.x)][(int)floor(new_pos.y)] == 0)

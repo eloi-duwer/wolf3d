@@ -62,8 +62,7 @@ typedef struct	s_infos {
 	int			keypressed[4];
 	Uint32		lasttick;
 	Uint32		elapsedtime;
-	t_dbl_point	screenleftpos;
-	t_dbl_point	pixelvector;
+	t_dbl_point	screenleftvec;
 	t_intersec	intersection;
 	int			wall_color;
 	double		angle;
@@ -103,6 +102,10 @@ Uint32			getpixel(SDL_Surface *surface, int x, int y);
 void			draw_procedural_color(t_infos *infos, double t, \
 					t_int_point begin, t_int_point end);
 void			print_texture_line(t_infos *infos, t_dbl_point vector, \
+					t_int_point begin, t_int_point end, double height_px);
+void			procedural_floor_roof(t_infos *infos, \
 					t_int_point begin, t_int_point end);
+void			draw_column(SDL_Surface *surface, \
+					t_int_point debut, t_int_point fin, Uint32 color);
 
 #endif

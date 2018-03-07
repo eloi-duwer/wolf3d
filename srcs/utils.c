@@ -55,3 +55,13 @@ void	init_struct(t_infos *infos, int carg, char **argnames)
 	infos->view_vector.x = 0.0;
 	infos->print_walls = true;
 }
+
+Uint32	getpixel(SDL_Surface *surface, int x, int y)
+{
+	Uint8			*pixel;
+
+	pixel = (Uint8*)surface->pixels;
+	pixel += ((Uint32)y * (Uint32)surface->pitch) + \
+		((Uint32)x * surface->format->BytesPerPixel);
+	return (*((Uint32*)pixel));
+}

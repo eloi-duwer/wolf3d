@@ -97,12 +97,19 @@ void	draw_a_line(SDL_Surface *surface, t_int_point cor1, t_int_point cor2,\
 	redraw_the_line(surface, cor1, cor2, color);
 }
 
-Uint32	getpixel(SDL_Surface *surface, int x, int y)
+void	draw_column(SDL_Surface *surface, \
+			t_int_point debut, t_int_point fin, Uint32 color)
 {
-	Uint8			*pixel;
+	int add;
 
-	pixel = (Uint8*)surface->pixels;
-	pixel += ((Uint32)y * (Uint32)surface->pitch) + \
-		((Uint32)x * surface->format->BytesPerPixel);
-	return (*((Uint32*)pixel));
+	if (debut.y < fin.y)
+		add = 1;
+	else
+		add = -1;
+	while (debut.y != fin.y)
+	{
+		setpixel(surface, debut.x, debut.y, color);
+		debut.y += add;
+	}
+	setpixel(surface, debut.x, debut.y, color);
 }

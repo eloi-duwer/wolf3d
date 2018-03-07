@@ -13,12 +13,13 @@
 #include <wolf3d.h>
 
 void	print_texture_line(t_infos *infos, t_dbl_point vector, \
-			t_int_point begin, t_int_point end)
+			t_int_point begin, t_int_point end, double height_px)
 {
 	t_int_point	pixel;
 	SDL_Surface	*texture;
 	int			total_height;
 	Uint32		color;
+	int			offscreen_pixels;
 
 	texture = infos->walls[infos->wall_color];
 	total_height = end.y - begin.y + 1;
@@ -26,10 +27,11 @@ void	print_texture_line(t_infos *infos, t_dbl_point vector, \
 		pixel.x = (int)(fmod(vector.x, 1.) * texture->w);
 	else
 		pixel.x = (int)(fmod(vector.y, 1.) * texture->w);
+	offscreen_pixels = (height_px - (double)total_height) / 2.;
 	while (begin.y <= end.y)
 	{
-		pixel.y = (int)((1. - ((double)(end.y - begin.y) / \
-			(double)total_height)) * (double)texture->h);
+		pixel.y = (int)((1. - ((double)(end.y - begin.y + offscreen_pixels) / \
+			height_px)) * (double)texture->h);
 		color = getpixel(texture, pixel.x, pixel.y);
 		setpixel(infos->surface, begin.x, begin.y, color);
 		++(begin.y);

@@ -36,7 +36,7 @@ void	drawsquare(t_infos *infos, double x, double y)
 	convert_map_pos_to_minimap_pos(infos, tmp_pos, &endpoint);
 	while (++i < infos->pixelperblock)
 	{
-		draw_a_line(infos->surface, beginpoint, endpoint, infos->color_to_put);
+		draw_column(infos->surface, beginpoint, endpoint, infos->color_to_put);
 		++(beginpoint.x);
 		++(endpoint.x);
 	}
@@ -55,7 +55,7 @@ void	drawminimap(t_infos *infos)
 		j = -1;
 		while (++j < infos->map_size.y)
 		{
-			if (infos->world_map[i][j] == 1)
+			if (infos->world_map[i][j] != 0)
 				drawsquare(infos, (double)i, (double)j);
 		}
 	}
