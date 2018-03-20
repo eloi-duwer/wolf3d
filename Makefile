@@ -2,7 +2,7 @@ NAME = wolf3d
 
 CC = gcc
 
-CFLAGS = -I./SDL2-2.0.7/include -I./include -Wall -Wextra -g
+CFLAGS = -I./SDL2-2.0.7/include -I./include -Wall -Wextra -Werror
 
 SRCS = main.c \
 		graphiclib.c \
@@ -18,7 +18,7 @@ SRCS = main.c \
 		print_texture.c
 
 SRCF = ./srcs/
-
+OBJF = ./obj/
 all: $(NAME)
 
 OBJS = $(addprefix $(SRCF), $(SRCS:.c=.o))
@@ -31,9 +31,9 @@ fclean: clean
 
 $(NAME): $(OBJS)
 	@cd libft && make
-	$(CC) -o $(NAME) $(OBJS) -lm -L./libft -lft `./SDL2-2.0.7/build/sdl2-config --cflags --libs`
+	$(CC) -o $(NAME) $(OBJS) -Wextra -Wall -lm -L./libft -lft `./SDL2-2.0.7/build/sdl2-config --cflags --libs`
 
 re: fclean all
 
 SDL2:
-	cd SDL2-2.0.7 && mkdir build && cd build && ../configure --prefix ~/Library && make && make install
+	cd SDL2-2.0.7 && rm -rf build && mkdir build && cd build && ../configure --prefix ~/Library && make && make install

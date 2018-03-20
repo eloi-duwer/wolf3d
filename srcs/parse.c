@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 17:11:04 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/01 17:13:49 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/18 16:57:28 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	control_map(t_infos *infos, int **map, t_dbl_point player_pos)
 {
-	int i;
-	t_int_point pos;
-	t_infos mem = *infos;
+	int			i;
+	t_int_point	pos;
 
 	pos.x = (int)floor(player_pos.x);
 	pos.y = (int)floor(player_pos.y);
@@ -74,12 +73,13 @@ void	allocatetheworldmap(t_infos *infos)
 	if (!(infos->world_map =\
 			(int **)malloc(sizeof(int *) * infos->map_size.x)))
 		printerror(infos, "Malloc returned NULL");
-	i = -1;
-	while (++i < infos->map_size.x)
+	i = 0;
+	while (i < infos->map_size.x)
 	{
 		if (!(infos->world_map[i] =\
 				(int *)malloc(sizeof(int) * infos->map_size.y)))
 			printerror(infos, "Malloc returned NULL");
+		++i;
 	}
 }
 

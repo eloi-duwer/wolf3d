@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 17:14:08 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/05 12:49:50 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/18 17:51:59 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ int		test_x_y(int x, int y, t_int_point mapsize, int **map)
 void	quit_prog(t_infos *infos)
 {
 	SDL_DestroyWindow(infos->window);
+	SDL_FreeSurface(infos->walls[0]);
+	SDL_FreeSurface(infos->walls[1]);
+	SDL_FreeSurface(infos->walls[2]);
+	SDL_FreeSurface(infos->walls[3]);
 	SDL_Quit();
 	exit(EXIT_SUCCESS);
 }
@@ -31,11 +35,17 @@ void	quit_prog(t_infos *infos)
 void	printerror(t_infos *infos, char *message)
 {
 	write(2, message, ft_strlen(message));
+	write(2, "\n", 1);
 	quit_prog(infos);
 }
 
 void	init_struct(t_infos *infos, int carg, char **argnames)
 {
+	infos->window = NULL;
+	infos->walls[0] = NULL;
+	infos->walls[1] = NULL;
+	infos->walls[2] = NULL;
+	infos->walls[3] = NULL;
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		printerror(infos, "SDL_Init returned < 0");
 	infos->window = SDL_CreateWindow("wolf3d", SDL_WINDOWPOS_CENTERED,\
@@ -60,8 +70,12 @@ Uint32	getpixel(SDL_Surface *surface, int x, int y)
 {
 	Uint8			*pixel;
 
-	pixel = (Uint8*)surface->pixels;
-	pixel += ((Uint32)y * (Uint32)surface->pitch) + \
-		((Uint32)x * surface->format->BytesPerPixel);
-	return (*((Uint32*)pixel));
+	if (x < surface->w && y < surface->h)
+	{
+		pixel = (Uint8*)surface->pixels;
+		pixel += ((Uint32)y * (Uint32)surface->pitch) + \
+			((Uint32)x * surface->format->BytesPerPixel);
+		return (*((Uint32*)pixel));
+	}
+	return (0);
 }

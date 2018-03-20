@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 16:57:34 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/05 14:04:40 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/18 15:28:13 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 void	calcintersecanddraw(t_infos *infos, t_dbl_point vector, int i)
 {
 	double		t;
-	t_dbl_point	final_coords;
 	double		height;
 	t_int_point	begin_point;
 	t_int_point	end_point;
 
-	t = get_t_x_and_y(infos, vector, &final_coords);
+	t = get_t_x_and_y(infos, vector, &infos->final_coords);
 	t = t * cos(infos->angle);
 	height = nearbyint(infos->surface->h / t);
 	begin_point.x = i;
@@ -31,7 +30,7 @@ void	calcintersecanddraw(t_infos *infos, t_dbl_point vector, int i)
 	if (infos->print_walls == false)
 		draw_procedural_color(infos, t, begin_point, end_point);
 	else
-		print_texture_line(infos, final_coords, begin_point, end_point, height);
+		print_texture_line(infos, begin_point, end_point, height);
 	procedural_floor_roof(infos, begin_point, end_point);
 }
 
@@ -60,8 +59,10 @@ void	init_values(t_infos *infos)
 		* infos->surface->h);
 	screen_mid_pos.x = infos->player_pos.x + infos->view_vector.x;
 	screen_mid_pos.y = infos->player_pos.y + infos->view_vector.y;
-	infos->screenleftvec.x = screen_mid_pos.x + infos->view_vector.y - infos->player_pos.x;
-	infos->screenleftvec.y = screen_mid_pos.y + -infos->view_vector.x - infos->player_pos.y;
+	infos->screenleftvec.x = screen_mid_pos.x + infos->view_vector.y \
+		- infos->player_pos.x;
+	infos->screenleftvec.y = screen_mid_pos.y + -infos->view_vector.x \
+		- infos->player_pos.y;
 }
 
 void	mainrender(t_infos *infos)

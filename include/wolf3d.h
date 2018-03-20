@@ -6,7 +6,7 @@
 /*   By: eduwer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 15:07:21 by eduwer            #+#    #+#             */
-/*   Updated: 2018/03/05 13:58:52 by eduwer           ###   ########.fr       */
+/*   Updated: 2018/03/18 17:09:53 by eduwer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct	s_infos {
 	double		angle;
 	SDL_Surface	*walls[4];
 	bool		print_walls;
+	t_dbl_point	final_coords;
 }				t_infos;
 
 void			setpixel(SDL_Surface *surface, int x, int y, \
@@ -101,7 +102,7 @@ int				test_x_y(int x, int y, t_int_point mapsize, int **map);
 Uint32			getpixel(SDL_Surface *surface, int x, int y);
 void			draw_procedural_color(t_infos *infos, double t, \
 					t_int_point begin, t_int_point end);
-void			print_texture_line(t_infos *infos, t_dbl_point vector, \
+void			print_texture_line(t_infos *infos, \
 					t_int_point begin, t_int_point end, double height_px);
 void			procedural_floor_roof(t_infos *infos, \
 					t_int_point begin, t_int_point end);

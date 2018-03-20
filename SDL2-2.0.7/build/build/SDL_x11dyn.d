@@ -1,13 +1,13 @@
 build/SDL_x11dyn.lo: \
-  /Users/eduwer/work/wolf3d/SDL2-2.0.7/src/video/x11/SDL_x11dyn.c \
-  /Users/eduwer/work/wolf3d/SDL2-2.0.7/src/video/x11/../../SDL_internal.h \
-  /Users/eduwer/work/wolf3d/SDL2-2.0.7/src/video/x11/../../dynapi/SDL_dynapi.h \
-  /Users/eduwer/work/wolf3d/SDL2-2.0.7/src/video/x11/../../dynapi/SDL_dynapi_overrides.h \
+  /Users/eduwer/work/wolf3d/git/SDL2-2.0.7/src/video/x11/SDL_x11dyn.c \
+  /Users/eduwer/work/wolf3d/git/SDL2-2.0.7/src/video/x11/../../SDL_internal.h \
+  /Users/eduwer/work/wolf3d/git/SDL2-2.0.7/src/video/x11/../../dynapi/SDL_dynapi.h \
+  /Users/eduwer/work/wolf3d/git/SDL2-2.0.7/src/video/x11/../../dynapi/SDL_dynapi_overrides.h \
   include/SDL_config.h \
-  /Users/eduwer/work/wolf3d/SDL2-2.0.7/include/SDL_platform.h \
-  /Users/eduwer/work/wolf3d/SDL2-2.0.7/include/begin_code.h \
-  /Users/eduwer/work/wolf3d/SDL2-2.0.7/include/close_code.h \
-  /Users/eduwer/work/wolf3d/SDL2-2.0.7/src/video/x11/SDL_x11dyn.h \
+  /Users/eduwer/work/wolf3d/git/SDL2-2.0.7/include/SDL_platform.h \
+  /Users/eduwer/work/wolf3d/git/SDL2-2.0.7/include/begin_code.h \
+  /Users/eduwer/work/wolf3d/git/SDL2-2.0.7/include/close_code.h \
+  /Users/eduwer/work/wolf3d/git/SDL2-2.0.7/src/video/x11/SDL_x11dyn.h \
   /usr/X11R6/include/X11/Xlib.h /usr/X11R6/include/X11/X.h \
   /usr/X11R6/include/X11/Xfuncproto.h /usr/X11R6/include/X11/Xosdefs.h \
   /usr/X11R6/include/X11/Xutil.h /usr/X11R6/include/X11/keysym.h \
@@ -42,9 +42,9 @@ build/SDL_x11dyn.lo: \
   /usr/X11R6/include/X11/extensions/shapeconst.h \
   /usr/X11R6/include/X11/extensions/xf86vmode.h \
   /usr/X11R6/include/X11/extensions/xf86vm.h \
-  /Users/eduwer/work/wolf3d/SDL2-2.0.7/src/video/x11/SDL_x11sym.h \
-  /Users/eduwer/work/wolf3d/SDL2-2.0.7/include/SDL_name.h \
-  /Users/eduwer/work/wolf3d/SDL2-2.0.7/include/SDL_loadso.h \
-  /Users/eduwer/work/wolf3d/SDL2-2.0.7/include/SDL_stdinc.h \
-  /Users/eduwer/work/wolf3d/SDL2-2.0.7/include/SDL_config.h \
-  /Users/eduwer/work/wolf3d/SDL2-2.0.7/include/SDL_error.h
+  /Users/eduwer/work/wolf3d/git/SDL2-2.0.7/src/video/x11/SDL_x11sym.h \
+  /Users/eduwer/work/wolf3d/git/SDL2-2.0.7/include/SDL_name.h \
+  /Users/eduwer/work/wolf3d/git/SDL2-2.0.7/include/SDL_loadso.h \
+  /Users/eduwer/work/wolf3d/git/SDL2-2.0.7/include/SDL_stdinc.h \
+  /Users/eduwer/work/wolf3d/git/SDL2-2.0.7/include/SDL_config.h \
+  /Users/eduwer/work/wolf3d/git/SDL2-2.0.7/include/SDL_error.h
