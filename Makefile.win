@@ -1,0 +1,41 @@
+NAME = wolf3d
+
+CC = mingw32-gcc.exe
+
+CFLAGS = -I./SDL2_win/include/SDL2 -I./include -I./libft -Wall -Wextra -g -fsanitize=leak
+
+SRCS = draw_map.c \
+		game_mechanics.c \
+		get_t_x_y.c \
+		graphiclib.c \
+		handle_keyboard.c \
+		main.c \
+		main_render.c \
+		math.c \
+		parse.c \
+		utils.c \
+		procedural_colors.c \
+		print_texture.c
+
+SRCF = ./srcs/
+
+OBJS = $(addprefix $(SRCF), $(SRCS:.c=.o))
+
+LIB = ./SDL2_win/lib
+
+Release: all
+Debug: all
+cleanDebug: clean
+cleanRelease: clean
+
+clean:
+	D:\Msys64\usr\bin\rm.exe $(OBJS)
+
+fclean: clean
+	D:\Msys64\usr\bin\rm.exe $(NAME)
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	cd ./libft && mingw32-make.exe -f Makefile.win
+	$(CC) -o ./bin/$(NAME) $(OBJS) -L$(LIB) -lmingw32 -lSDL2main -lSDL2  -lm -L./libft -lft
